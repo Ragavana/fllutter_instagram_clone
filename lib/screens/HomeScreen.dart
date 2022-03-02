@@ -140,32 +140,40 @@ class HomeScreen extends StatelessWidget {
         comment_count: 984)
   ];
 
+  final double contentHeight;
+
+  HomeScreen(this.contentHeight);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.grey.shade100,
+      height: contentHeight,
+      width: double.infinity,
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [
-            const StoryBanner(),
+            Container(
+              color: Colors.grey.shade100,
+              child: const StoryBanner(),
+              height: contentHeight * 0.14,
+            ),
             Divider(
               thickness: 2,
+              height: contentHeight * 0.01,
               color: Colors.grey.shade200,
             ),
             Container(
-                height: 480,
+                height: contentHeight * 0.75,
                 color: Colors.grey.shade100,
                 width: double.infinity,
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return FeedBanner(myFeeds[index]);
+                    return FeedBanner(contentHeight, myFeeds[index]);
                   },
                   itemCount: myFeeds.length,
                 )),
-            const SizedBox(
-              height: 20,
-            )
           ],
         ),
       ),

@@ -11,11 +11,14 @@ class NavigatorScreen extends StatefulWidget {
 
 class _NavigatorScreenState extends State<NavigatorScreen> {
   int pageindex = 0;
+
   @override
   Widget build(BuildContext context) {
+    final bodyHeight = MediaQuery.of(context).size.height - getAppbar().preferredSize.height - MediaQuery.of(context).padding.bottom -MediaQuery.of(context).padding.top;
+    print(bodyHeight);
     return Scaffold(
-      appBar: getAppbar(),
-      body: getbody(),
+      appBar: pageindex == 1 ? null : getAppbar(),
+      body: getbody(bodyHeight),
       bottomNavigationBar: getFooter(),
     );
   }
@@ -38,12 +41,9 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
               color: Colors.black87,
             )),
         IconButton(
-          iconSize: 20,
+            iconSize: 20,
             onPressed: () {},
-            icon: const Icon(
-              MyIcons.share,
-              color: Colors.black87
-            )),
+            icon: const Icon(MyIcons.share, color: Colors.black87)),
       ],
     );
   }
@@ -65,25 +65,21 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
             icon: Icon(MyIcons.home_1),
             activeIcon: Icon(MyIcons.home_fill)),
         BottomNavigationBarItem(
-          label: "",
-          icon: Icon(MyIcons.search_fill),
-          activeIcon: Icon(MyIcons.search_fill)
-        ),
+            label: "",
+            icon: Icon(MyIcons.search_fill),
+            activeIcon: Icon(MyIcons.search_fill)),
         BottomNavigationBarItem(
-          label: "",
+            label: "",
             icon: Icon(MyIcons.reels),
-            activeIcon: Icon(MyIcons.reels_fill)
-        ),
+            activeIcon: Icon(MyIcons.reels_fill)),
         BottomNavigationBarItem(
-          label: "",
+            label: "",
             icon: Icon(MyIcons.heart),
-            activeIcon: Icon(MyIcons.heart_fill)
-        ),
+            activeIcon: Icon(MyIcons.heart_fill)),
         BottomNavigationBarItem(
-          label: "",
+            label: "",
             icon: Icon(MyIcons.profile),
-            activeIcon: Icon(MyIcons.profile_fill)
-        ),
+            activeIcon: Icon(MyIcons.profile_fill)),
       ],
     );
   }
@@ -154,12 +150,12 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
   //   );
   // }
 
-  Widget getbody() {
+  Widget getbody(double bodyHeight) {
     List<Widget> Screens = [
-      HomeScreen(),
+      HomeScreen(bodyHeight),
       ReelsScreen(),
       ProfileScreen(),
-      HomeScreen(),
+      HomeScreen(bodyHeight),
       ReelsScreen(),
     ];
     return IndexedStack(

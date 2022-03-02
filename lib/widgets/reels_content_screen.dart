@@ -14,8 +14,8 @@ class ReelsContentScreen extends StatefulWidget {
 }
 
 class ReelsContentScreenState extends State<ReelsContentScreen> {
-  VideoPlayerController? _videoPlayerController = null;
-  ChewieController? _chewieController = null;
+  VideoPlayerController? _videoPlayerController;
+  ChewieController? _chewieController;
   bool _liked = false;
   @override
   void initState() {
@@ -24,7 +24,7 @@ class ReelsContentScreenState extends State<ReelsContentScreen> {
   }
 
   Future initializePlayer() async {
-    _videoPlayerController = VideoPlayerController.network(widget.src);
+    _videoPlayerController = VideoPlayerController.asset(widget.src);
     await Future.wait([_videoPlayerController!.initialize()]);
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController!,

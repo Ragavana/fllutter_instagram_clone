@@ -1,11 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_mojo/utils/my_icons_icons.dart';
+import 'package:octo_image/octo_image.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../model/Feed.dart';
 
 class FeedBanner extends StatelessWidget {
   final Feed _feed;
-  FeedBanner(this._feed);
+  final double contentHeight;
+  FeedBanner(this.contentHeight,this._feed);
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +18,7 @@ class FeedBanner extends StatelessWidget {
       margin: const EdgeInsets.all(8),
       shadowColor: Colors.grey.shade300,
       color: Colors.grey.shade100,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       elevation: 5,
       child: SizedBox(
           width: double.infinity,
@@ -77,16 +80,21 @@ class FeedBanner extends StatelessWidget {
                 ),
               ),
               //Feed Image
-              Container(
-                height: 350,
-                margin: const EdgeInsets.all(5),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: Colors.grey.shade100,
-                    image: DecorationImage(
-                        image: Image.network(_feed.image).image,
-                        fit: BoxFit.cover),
-                    borderRadius: BorderRadius.circular(10)),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 5.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: OctoImage(
+                    height: contentHeight * .45,
+                    width: double.infinity,
+                    image: CachedNetworkImageProvider(_feed.image),
+                    placeholderBuilder: OctoPlaceholder.blurHash(
+                      'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
+                    ),
+                    errorBuilder: OctoError.icon(color: Colors.red),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               // Action container
               Container(

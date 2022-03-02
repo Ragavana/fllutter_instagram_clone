@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:octo_image/octo_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CircularImage extends StatelessWidget {
   final String imageUrl;
@@ -25,18 +27,34 @@ class CircularImage extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Container(
-          margin: const EdgeInsets.all(.5),
-          height: height-5,
-          width: width-5,
-          decoration: BoxDecoration(
+        child: Padding(
+          padding: const EdgeInsets.all(.5),
+          child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            image:  DecorationImage(
-              image: Image.network(imageUrl).image,
+            child: OctoImage(
+              height: height -5,
+              width: width -5,
+              image: CachedNetworkImageProvider(imageUrl),
+              placeholderBuilder: OctoPlaceholder.blurHash(
+                'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
+              ),
+              errorBuilder: OctoError.icon(color: Colors.red),
               fit: BoxFit.cover,
             ),
           ),
         ),
+        // Container(
+        //   margin: const EdgeInsets.all(.5),
+        //   height: height-5,
+        //   width: width-5,
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(10),
+        //     image:  DecorationImage(
+        //       image: Image.network(imageUrl).image,
+        //       fit: BoxFit.cover,
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }

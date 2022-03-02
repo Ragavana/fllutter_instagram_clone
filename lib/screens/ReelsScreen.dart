@@ -1,57 +1,201 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:insta_mojo/widgets/reels_content_screen.dart';
+import 'package:insta_mojo/widgets/video_player_item.dart';
 
-class ReelsScreen extends StatelessWidget {
-  final List<String> videos = [
-    'http://www.exit109.com/~dnn/clips/RW20seconds_1.mp4',
-    'http://www.exit109.com/~dnn/clips/RW20seconds_2.mp4',
-    'https://assets.mixkit.co/videos/preview/mixkit-young-mother-with-her-little-daughter-decorating-a-christmas-tree-39745-large.mp4',
-    'https://assets.mixkit.co/videos/preview/mixkit-mother-with-her-little-daughter-eating-a-marshmallow-in-nature-39764-large.mp4',
-    'https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-1232-large.mp4',
-    'https://assets.mixkit.co/videos/preview/mixkit-taking-photos-from-different-angles-of-a-model-34421-large.mp4',
-    'https://assets.mixkit.co/videos/preview/mixkit-winter-fashion-cold-looking-woman-concept-video-39874-large.mp4',
-    'https://assets.mixkit.co/videos/preview/mixkit-womans-feet-splashing-in-the-pool-1261-large.mp4',
-    'https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4'
+class ReelsScreen extends StatefulWidget {
+  List reelsItems = [
+    {
+      "videoUrl": "assets/videos/video_1.mp4",
+      "name": "Vannak Niza🦋",
+      "caption": "Morning, everyone!!",
+      "songName": "original sound - Łÿ Pîkâ Ćhûû",
+      "profileImg":
+          "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/1663771856684033.jpeg",
+      "likes": "1.5M",
+      "comments": "18.9K",
+      "shares": "80K",
+      "albumImg":
+          "https://images.unsplash.com/photo-1502982899975-893c9cf39028?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+    },
+    {
+      "videoUrl": "assets/videos/video_2.mp4",
+      "name": "Dara Chamroeun",
+      "caption": "Oops 🙊 #fyp #cambodiatiktok",
+      "songName": "original sound - 💛💛Khantana 🌟",
+      "profileImg":
+          "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/ba13e655825553a46b1913705e3a8617.jpeg",
+      "likes": "4.4K",
+      "comments": "5.2K",
+      "shares": "100",
+      "albumImg":
+          "https://images.unsplash.com/photo-1462804512123-465343c607ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+    },
+    {
+      "videoUrl": "assets/videos/video_3.mp4",
+      "name": "9999womenfashion",
+      "caption": "#블루모드",
+      "songName": "original sound - 🖤Khün MÄk🇰🇭",
+      "profileImg":
+          "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/1664576339652610.jpeg",
+      "likes": "100K",
+      "comments": "10K",
+      "shares": "8.5K",
+      "albumImg":
+          "https://images.unsplash.com/photo-1457732815361-daa98277e9c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+    },
+    {
+      "videoUrl": "assets/videos/video_4.mp4",
+      "name": "Vannak Niza🦋",
+      "caption": "Morning, everyone!!",
+      "songName": "original sound - Łÿ Pîkâ Ćhûû",
+      "profileImg":
+      "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/1663771856684033.jpeg",
+      "likes": "1.5M",
+      "comments": "18.9K",
+      "shares": "80K",
+      "albumImg":
+      "https://images.unsplash.com/photo-1502982899975-893c9cf39028?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+    },
+    {
+      "videoUrl": "assets/videos/video_5.mp4",
+      "name": "Dara Chamroeun",
+      "caption": "Oops 🙊 #fyp #cambodiatiktok",
+      "songName": "original sound - 💛💛Khantana 🌟",
+      "profileImg":
+      "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/ba13e655825553a46b1913705e3a8617.jpeg",
+      "likes": "4.4K",
+      "comments": "5.2K",
+      "shares": "100",
+      "albumImg":
+      "https://images.unsplash.com/photo-1462804512123-465343c607ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+    },
+    {
+      "videoUrl": "assets/videos/video_1.mp4",
+      "name": "9999womenfashion",
+      "caption": "#블루모드",
+      "songName": "original sound - 🖤Khün MÄk🇰🇭",
+      "profileImg":
+      "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/1664576339652610.jpeg",
+      "likes": "100K",
+      "comments": "10K",
+      "shares": "8.5K",
+      "albumImg":
+      "https://images.unsplash.com/photo-1457732815361-daa98277e9c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+    },
+    {
+      "videoUrl": "assets/videos/video_3.mp4",
+      "name": "9999womenfashion",
+      "caption": "#블루모드",
+      "songName": "original sound - 🖤Khün MÄk🇰🇭",
+      "profileImg":
+      "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/1664576339652610.jpeg",
+      "likes": "100K",
+      "comments": "10K",
+      "shares": "8.5K",
+      "albumImg":
+      "https://images.unsplash.com/photo-1457732815361-daa98277e9c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+    },
+    {
+      "videoUrl": "assets/videos/video_1.mp4",
+      "name": "Vannak Niza🦋",
+      "caption": "Morning, everyone!!",
+      "songName": "original sound - Łÿ Pîkâ Ćhûû",
+      "profileImg":
+      "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/1663771856684033.jpeg",
+      "likes": "1.5M",
+      "comments": "18.9K",
+      "shares": "80K",
+      "albumImg":
+      "https://images.unsplash.com/photo-1502982899975-893c9cf39028?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+    },
+    {
+      "videoUrl": "assets/videos/video_2.mp4",
+      "name": "Dara Chamroeun",
+      "caption": "Oops 🙊 #fyp #cambodiatiktok",
+      "songName": "original sound - 💛💛Khantana 🌟",
+      "profileImg":
+      "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/ba13e655825553a46b1913705e3a8617.jpeg",
+      "likes": "4.4K",
+      "comments": "5.2K",
+      "shares": "100",
+      "albumImg":
+      "https://images.unsplash.com/photo-1462804512123-465343c607ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+    },
+    {
+      "videoUrl": "assets/videos/video_3.mp4",
+      "name": "9999womenfashion",
+      "caption": "#블루모드",
+      "songName": "original sound - 🖤Khün MÄk🇰🇭",
+      "profileImg":
+      "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/1664576339652610.jpeg",
+      "likes": "100K",
+      "comments": "10K",
+      "shares": "8.5K",
+      "albumImg":
+      "https://images.unsplash.com/photo-1457732815361-daa98277e9c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+    },
+    {
+      "videoUrl": "assets/videos/video_4.mp4",
+      "name": "Vannak Niza🦋",
+      "caption": "Morning, everyone!!",
+      "songName": "original sound - Łÿ Pîkâ Ćhûû",
+      "profileImg":
+      "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/1663771856684033.jpeg",
+      "likes": "1.5M",
+      "comments": "18.9K",
+      "shares": "80K",
+      "albumImg":
+      "https://images.unsplash.com/photo-1502982899975-893c9cf39028?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+    },
+    {
+      "videoUrl": "assets/videos/video_5.mp4",
+      "name": "Dara Chamroeun",
+      "caption": "Oops 🙊 #fyp #cambodiatiktok",
+      "songName": "original sound - 💛💛Khantana 🌟",
+      "profileImg":
+      "https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/ba13e655825553a46b1913705e3a8617.jpeg",
+      "likes": "4.4K",
+      "comments": "5.2K",
+      "shares": "100",
+      "albumImg":
+      "https://images.unsplash.com/photo-1462804512123-465343c607ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+    },
   ];
+
+  ReelsScreen({Key? key}) : super(key: key);
+  @override
+  State<StatefulWidget> createState() {
+    return _ReelsScreenState();
+  }
+}
+
+class _ReelsScreenState extends State<ReelsScreen>
+    with SingleTickerProviderStateMixin {
+  TabController? _tabController;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _tabController = TabController(length: widget.reelsItems.length, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _tabController!.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          height: 300,
-          child: Stack(
-            children: [
-              //We need swiper for every content
-              Swiper(
-                itemBuilder: (BuildContext context, int index) {
-                  // return const Center(
-                  //    child: Text('TEST REELS'),
-                  // );
-                  return ReelsContentScreen(videos[index]);
-                },
-                itemCount: videos.length,
-                scrollDirection: Axis.vertical,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
-                      'Flutter Shorts',
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Icon(Icons.camera_alt),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
+    var size = MediaQuery.of(context).size;
+    return RotatedBox(
+      quarterTurns: 1,
+      child: TabBarView(
+        controller: _tabController,
+        children: List.generate(widget.reelsItems.length, (index) {
+          return VideoPlayerItem(size, widget.reelsItems[index]);
+        }),
       ),
     );
   }
