@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-import 'left_panel.dart';
+import 'reels_left_panel.dart';
+import 'reels_right_pannel.dart';
 
 class VideoPlayerItem extends StatefulWidget {
   final Size size;
   final reelsItem;
-  const VideoPlayerItem(this.size, this.reelsItem, {Key? key}) : super(key: key);
+  const VideoPlayerItem(this.size, this.reelsItem, {Key? key})
+      : super(key: key);
 
   @override
   _VideoPlayerItemState createState() => _VideoPlayerItemState();
@@ -15,7 +17,6 @@ class VideoPlayerItem extends StatefulWidget {
 class _VideoPlayerItemState extends State<VideoPlayerItem> {
   VideoPlayerController? _videoController;
   bool isShowPlaying = false;
-
 
   @override
   void initState() {
@@ -73,11 +74,12 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
       },
       child: RotatedBox(
         quarterTurns: -1,
-        child: Container(
+        child: SizedBox(
             height: widget.size.height,
             width: widget.size.width,
             child: Stack(
               children: <Widget>[
+
                 Container(
                   height: widget.size.height,
                   width: widget.size.width,
@@ -94,39 +96,49 @@ class _VideoPlayerItemState extends State<VideoPlayerItem> {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: widget.size.height,
                   width: widget.size.width,
-                  child:  Padding(
-                    padding: const EdgeInsets.only(left: 15, top: 20, bottom: 10),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10, top: 20, bottom: 5),
                     child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        // HeaderHomePage(),
+                        Expanded(
+                            child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
-                           // HeaderHomePage(),
-                            Expanded(
-                                child: Row(
-                                  children: <Widget>[
-                                    LeftPanel(
-                                      size: widget.size,
-                                      name: "${widget.reelsItem["name"]}",
-                                      caption: "${widget.reelsItem["caption"]}",
-                                      songName: "${widget.reelsItem["songName"]}",
-                                    ),
-                                    // RightPanel(
-                                    //   size: widget.size,
-                                    //   likes: "${widget.likes}",
-                                    //   comments: "${widget.comments}",
-                                    //   shares: "${widget.shares}",
-                                    //   profileImg: "${widget.profileImg}",
-                                    //   albumImg: "${widget.albumImg}",
-                                    // )
-                                  ],
-                                ))
+                            LeftPanel(
+                              profileImg: "${widget.reelsItem["albumImg"]}",
+                              size: widget.size,
+                              name: "${widget.reelsItem["name"]}",
+                              caption: "${widget.reelsItem["caption"]}",
+                              songName: "${widget.reelsItem["songName"]}",
+                            ),
+                            RightPanel(
+                              size: widget.size * 0.5,
+                              likes: "${widget.reelsItem["likes"]}",
+                              comments: "${widget.reelsItem["comments"]}",
+                              shares: "${widget.reelsItem["shares"]}",
+                              profileImg: "${widget.reelsItem["profileImg"]}",
+                              albumImg: "${widget.reelsItem["albumImg"]}",
+                            )
                           ],
-                        ),
-
+                        ))
+                      ],
+                    ),
                   ),
-                )
+                ),
+                SizedBox(
+                    height: 100,
+                    width: widget.size.width,
+                    child: AppBar(
+                      backgroundColor: null,
+                      title: Text('ggslkgshfskl'),
+                    )),
+
               ],
             )),
       ),

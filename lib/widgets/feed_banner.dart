@@ -3,14 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_mojo/utils/my_icons_icons.dart';
 import 'package:octo_image/octo_image.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../model/Feed.dart';
 
 class FeedBanner extends StatelessWidget {
   final Feed _feed;
   final double contentHeight;
-  FeedBanner(this.contentHeight,this._feed);
+  FeedBanner(this.contentHeight, this._feed);
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +80,8 @@ class FeedBanner extends StatelessWidget {
               ),
               //Feed Image
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 5.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 3.0, horizontal: 5.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: OctoImage(
